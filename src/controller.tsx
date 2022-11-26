@@ -2,8 +2,6 @@ import { Balloon } from './balloon';
 import { findToken, getTokenPosition } from './token';
 import { lookup } from "./annotations";
 
-import './index.css'
-
 export class Controller {
   balloon: Balloon;
 

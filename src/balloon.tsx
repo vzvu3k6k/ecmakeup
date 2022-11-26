@@ -1,6 +1,8 @@
 import React from "jsx-dom";
 import debounce from 'lodash.debounce';
 
+import './index.css'
+
 export class Balloon {
   readonly mountTarget: HTMLElement;
   readonly hide: () => void;
