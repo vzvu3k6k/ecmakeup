@@ -1,14 +1,17 @@
 import React from "jsx-dom";
+import debounce from 'lodash.debounce';
 
 export class Balloon {
   readonly mountTarget: HTMLElement;
+  readonly hide: () => void;
 
   constructor(mountTarget: HTMLElement) {
     this.mountTarget = mountTarget;
-  }
-
-  hide() {
-    this.mountTarget.replaceChildren();
+    this.hide = debounce(() => {
+      if (!this.mountTarget.matches(':hover')) {
+        this.mountTarget.replaceChildren();
+      }
+    }, 1000);
   }
 
   render({ x, y, content }: BalloonComponentProps) {
