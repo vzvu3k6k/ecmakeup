@@ -13,8 +13,7 @@ export class Controller {
 
   register(document: Document) {
     document.addEventListener('mousemove', (e) => {
-      // TODO: support chrome
-      const { offsetNode, offset } = (document as any).caretPositionFromPoint(e.clientX, e.clientY);
+      const { offsetNode, offset } = caretPositionFromPoint(document, e.clientX, e.clientY);
 
       const token = findToken(offsetNode.nodeValue, offset);
       if (!token) {
@@ -36,4 +35,21 @@ export class Controller {
       });
     });
   }
+}
+
+// TODO: remove implicit any types
+const caretPositionFromPoint = (document, ...args) => {
+  // Firefox
+  if (document.caretPositionFromPoint) {
+    const { offsetNode, offset } = document.caretPositionFromPoint(...args);
+    return { offsetNode, offset };
+  }
+
+  // Chrome
+  if (document.caretRangeFromPoint) {
+    const { startContainer, startOffset } = document.caretRangeFromPoint(...args);
+    return { offsetNode: startContainer, offset: startOffset };
+  }
+
+  throw new Error('Neither caretPositionFromPoint nor caretRangeFromPoint is supported.');
 }
