@@ -10,10 +10,14 @@ export class Balloon {
   constructor(mountTarget: HTMLElement) {
     this.mountTarget = mountTarget;
     this.hide = debounce(() => {
-      if (!this.mountTarget.matches(':hover')) {
+      if (!this.isHover()) {
         this.mountTarget.replaceChildren();
       }
     }, 1000);
+  }
+
+  isHover() {
+    return this.mountTarget.matches(':hover');
   }
 
   render({ x, y, content }: BalloonComponentProps) {

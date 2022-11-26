@@ -11,8 +11,11 @@ export class Controller {
 
   register(document: Document) {
     document.addEventListener('mousemove', (e) => {
-      const { offsetNode, offset } = caretPositionFromPoint(document, e.clientX, e.clientY);
+      if (this.balloon.isHover()) {
+        return;
+      }
 
+      const { offsetNode, offset } = caretPositionFromPoint(document, e.clientX, e.clientY);      
       const token = findToken(offsetNode.nodeValue, offset);
       if (!token) {
         this.balloon.hide();
