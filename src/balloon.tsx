@@ -12,7 +12,7 @@ export class Balloon {
   }
 
   render({ x, y, content }: BalloonComponentProps) {
-    let node = BalloonComponent({ x, y, content });
+    let node = BalloonComponent({ x: 0, y: 0, content });
     this.mountTarget.replaceChildren(node);
 
     const rect = node.getBoundingClientRect();
@@ -31,7 +31,7 @@ const BalloonComponent = ({ x, y, content }: BalloonComponentProps): HTMLElement
   return renderJSX(
     <div
       className="toolbox-container active"
-      style={{ left: `${x}px`, top: `${y}px` }}
+      style={{ left: `calc(${x}px - 1em)`, top: `${y}px` }}
     >
       <div className="toolbox">
         <div className="ecmakeup-description">
