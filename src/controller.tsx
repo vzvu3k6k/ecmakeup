@@ -35,17 +35,16 @@ export class Controller {
   }
 }
 
-// TODO: remove implicit any types
-const caretPositionFromPoint = (document, ...args) => {
+const caretPositionFromPoint = (document: any, x: number, y: number) => {
   // Firefox
   if (document.caretPositionFromPoint) {
-    const { offsetNode, offset } = document.caretPositionFromPoint(...args);
+    const { offsetNode, offset } = document.caretPositionFromPoint(x, y);
     return { offsetNode, offset };
   }
 
   // Chrome
   if (document.caretRangeFromPoint) {
-    const { startContainer, startOffset } = document.caretRangeFromPoint(...args);
+    const { startContainer, startOffset } = document.caretRangeFromPoint(x, y);
     return { offsetNode: startContainer, offset: startOffset };
   }
 
