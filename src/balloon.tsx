@@ -32,8 +32,8 @@ type BalloonComponentProps = {
   content: any;
 };
 
-const BalloonComponent = ({ x, y, content }: BalloonComponentProps): HTMLElement => {
-  return renderJSX(
+const BalloonComponent = ({ x, y, content }: BalloonComponentProps): JSX.Element => {
+  return (
     <div
       className="toolbox-container active"
       style={{ left: `calc(${x}px - 1em)`, top: `${y}px` }}
@@ -45,8 +45,4 @@ const BalloonComponent = ({ x, y, content }: BalloonComponentProps): HTMLElement
       </div>
     </div>
   );
-};
-
-const renderJSX = (element: JSX.Element): HTMLElement => {
-  return element as unknown as HTMLElement;
 };
