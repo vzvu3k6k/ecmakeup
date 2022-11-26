@@ -1,4 +1,4 @@
-import React from "jsx-dom";
+import React, { JSX } from "jsx-dom";
 
 export const lookup = (word: string): HTMLElement | null => {
   return table[word] || null;

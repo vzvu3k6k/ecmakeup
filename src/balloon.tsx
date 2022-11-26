@@ -1,4 +1,4 @@
-import React from "jsx-dom";
+import React, { JSX } from "jsx-dom";
 import debounce from 'lodash.debounce';
 
 import './index.css'
