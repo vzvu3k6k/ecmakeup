@@ -22,7 +22,7 @@ export class Controller {
         return;
       }
 
-      const content = lookup(token.word);
+      const content = lookup(offsetNode, token.word);
       if (!content) {
         this.balloon.hide();
         return;
