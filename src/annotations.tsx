@@ -10,9 +10,11 @@ export const lookup = (node: Node, word: string): JSX.Element | null => {
 
 type Matcher = (node: Node, word: string) => boolean;
 
-const matcher = (tagName: string, word: string): Matcher => {
+const matcher = (tagName: string, word?: string): Matcher => {
   return (node: Node, _word: string) => {
-    return isDescendantOf(node, tagName) && _word === word;
+    if (!isDescendantOf(node, tagName)) return false;
+    if (word === undefined) return true;
+    return _word === word;
   };
 };
 
@@ -82,5 +84,13 @@ const rules: Rule[] = [
         <a href="#sec-optional-symbols">Optional Symbol</a>: このトークンは省略可能
       </p>
     ),
-  }
+  },
+  {
+    matcher: matcher("emu-const"),
+    content: (
+      <p>
+        sans-serif typeface: <a href="#sec-enum-specification-type">Enum Specification Type</a>
+      </p>
+    )
+  },
 ];
